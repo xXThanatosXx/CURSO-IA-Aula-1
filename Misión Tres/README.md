@@ -6,13 +6,13 @@ y_true = [0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0]
 y_pred = [0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0]
 
 # Calcular Verdaderos Negativos (TN)
-TN = sum((y_true[i] == 0) and (y_pred[i] == 0) for i in range(len(y_true)))
+TN = sum((y_true[i] == 1) and (y_pred[i] == 0) for i in range(len(y_true)))
 
 # Calcular Falsos Positivos (FP)
 FP = sum((y_true[i] == 0) and (y_pred[i] == 1) for i in range(len(y_true)))
 
 # Calcular Falsos Negativos (FN)
-FN = sum((y_true[i] == 1) and (y_pred[i] == 0) for i in range(len(y_true)))
+FN = sum((y_true[i] == 0) and (y_pred[i] == 0) for i in range(len(y_true)))
 
 # Calcular Verdaderos Positivos (TP)
 TP = sum((y_true[i] == 1) and (y_pred[i] == 1) for i in range(len(y_true)))
