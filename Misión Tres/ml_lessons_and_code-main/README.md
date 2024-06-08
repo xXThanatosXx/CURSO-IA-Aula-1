@@ -110,8 +110,9 @@ y = y[y != 2]
 ```
 
 #### División de Datos
+```python
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
-
+```
 #### Definición del Perceptrón
 define una clase Perceptron, que es un algoritmo simple de aprendizaje supervisado. Tiene un constructor __init__ para inicializar la tasa de aprendizaje y el número de iteraciones. El método fit entrena el perceptrón ajustando los pesos. Los métodos net_input y predict calculan la entrada neta y hacen predicciones, respectivamente.
 
