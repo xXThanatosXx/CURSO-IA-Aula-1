@@ -61,4 +61,47 @@ report = classification_report(y_true, y_pred, target_names=['No Spam', 'Spam'])
 print(report)
 ```
 
+<h1 align="center">sklearn.metrics</h1>
 
+La biblioteca `sklearn.metrics` de scikit-learn proporciona una amplia gama de funciones para evaluar la precisión y el rendimiento de los modelos de aprendizaje automático. A continuación se detallan algunas de las funcionalidades principales que permite realizar:
+
+### Métricas de clasificación
+
+- **Exactitud (Accuracy):** `accuracy_score()`
+- **Precisión, Recall y F1-score:** `precision_score()`, `recall_score()`, `f1_score()`
+- **Curvas ROC y AUC:** `roc_curve()`, `auc()`
+- **Curvas PR (Precision-Recall):** `precision_recall_curve()`, `average_precision_score()`
+- **Matriz de confusión:** `confusion_matrix()`
+- **Informe de clasificación:** `classification_report()`
+- **Puntaje de log-loss:** `log_loss()`
+
+### Métricas de regresión
+
+- **Error cuadrático medio (MSE):** `mean_squared_error()`
+- **Error absoluto medio (MAE):** `mean_absolute_error()`
+- **Coeficiente de determinación (R^2):** `r2_score()`
+- **Error absoluto mediano:** `median_absolute_error()`
+- **Error cuadrático logarítmico medio:** `mean_squared_log_error()`
+
+### Métricas de clustering
+
+- **Índice de Rand ajustado:** `adjusted_rand_score()`
+- **Coeficiente de silueta:** `silhouette_score()`
+- **Homogeneidad, completitud y V-measure:** `homogeneity_score()`, `completeness_score()`, `v_measure_score()`
+- **Índice de Davies-Bouldin:** `davies_bouldin_score()`
+- **Índice de Calinski-Harabasz:** `calinski_harabasz_score()`
+
+### Métricas de pares
+
+- **Coeficiente de correlación de Pearson:** `pearsonr()`
+- **Coeficiente de correlación de Spearman:** `spearmanr()`
+- **Coeficiente de correlación de Kendall Tau:** `kendalltau()`
+
+### Otros
+
+- **Puntaje ROC AUC:** `roc_auc_score()`
+- **Puntaje de clasificación cruzada:** `cross_val_score()`
+- **Coeficiente de correlación de Matthews (MCC):** `matthews_corrcoef()`
+- **Logaritmo de la pérdida de probabilidad:** `log_loss()`
+
+Estas funciones permiten evaluar la efectividad de los modelos y seleccionar el mejor modelo para el conjunto de datos específico. Además, muchas de estas métricas se pueden personalizar y ajustar según las necesidades del proyecto.

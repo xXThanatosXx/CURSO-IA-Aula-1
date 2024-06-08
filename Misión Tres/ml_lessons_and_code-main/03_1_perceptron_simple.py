@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 from sklearn import datasets
 import numpy as np
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
+import sklearn.metrics as mtr
 
 # --- Carga del dataset iris ---
 iris = datasets.load_iris()
@@ -74,26 +74,55 @@ ppn = Perceptron(learning_rate=0.01, n_iterations=50)
 ppn.fit(X_train, y_train)
 
 # --- Visualización ---
-plt.figure(figsize=(12, 6))
+plt.figure(figsize=(18, 6))
 
-# Region de decisión
-plt.subplot(1, 2, 1)
+# Región de decisión
+plt.subplot(1, 3, 1)
 plot_decision_regions(X_test, y_test, ppn)
-plt.title('Region de Decisión')
+plt.title('Región de Decisión')
 plt.xlabel('Longitud del sépalo')
 plt.ylabel('Ancho del sépalo')
 plt.legend(loc='upper left')
 
 # Pérdidas por época
-plt.subplot(1, 2, 2)
+plt.subplot(1, 3, 2)
 plt.plot(range(1, len(ppn.errors) + 1), ppn.errors, marker='o')
 plt.title('Pérdidas por Época')
 plt.xlabel('Épocas')
 plt.ylabel('Errores')
 
+# Curva ROC
+plt.subplot(1, 3, 3)
+y_probs = ppn.net_input(X_test)  # Probabilidades de predicción (scores)
+fpr, tpr, thresholds = mtr.roc_curve(y_test, y_probs)
+roc_auc = mtr.roc_auc_score(y_test, y_probs)
+plt.plot(fpr, tpr, color='blue', lw=2, label=f'ROC curve (area = {roc_auc:.2f})')
+plt.plot([0, 1], [0, 1], color='gray', linestyle='--')
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.05])
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('Curva ROC')
+plt.legend(loc='lower right')
+plt.grid(True)
+
 plt.tight_layout()
 plt.show()
 
-# Evaluación
+# Matriz de confusión
 y_pred = ppn.predict(X_test)
-print('Accuracy: %.2f' % accuracy_score(y_test, y_pred))
+plt.figure(figsize=(6, 6))
+conf_matrix = mtr.confusion_matrix(y_test, y_pred)
+plt.matshow(conf_matrix, cmap=plt.cm.Blues, alpha=0.7)
+for i in range(conf_matrix.shape[0]):
+    for j in range(conf_matrix.shape[1]):
+        plt.text(x=j, y=i, s=conf_matrix[i, j], va='center', ha='center')
+plt.xlabel('Predicted label')
+plt.ylabel('True label')
+plt.title('Matriz de Confusión')
+plt.show()
+
+# Evaluación
+print('Accuracy: %.2f' % mtr.accuracy_score(y_test, y_pred))
+print('F-1 Score: %.2f' % mtr.f1_score(y_test, y_pred))
+print('AUC: %.2f' % roc_auc)
