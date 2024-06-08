@@ -14,7 +14,7 @@ X = X[y != 2][:, [0, 1]]
 y = y[y != 2]
 
 # Divide los datos en conjuntos de entrenamiento y prueba
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 class Perceptron:
     """
