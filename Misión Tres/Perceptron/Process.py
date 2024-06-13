@@ -2,7 +2,7 @@ from sklearn import datasets
 from sklearn.model_selection import train_test_split
 
 def load_and_prepare_data():
-    iris = datasets.load_()
+    iris = datasets.load_iris()
     X = iris.data
     y = iris.target
 
