@@ -13,6 +13,7 @@ y = iris.target
 
 # X = X[y != 2][:, [0, 1]]
 # y = y[y != 2]
+
 # Dividir el dataset en conjunto de entrenamiento y prueba
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=1)
 
