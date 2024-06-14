@@ -1,19 +1,25 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn.datasets import load_iris
+from sklearn import datasets
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix
 
 # Cargar el dataset Iris
-iris = load_iris()
+iris = datasets.load_digits()
 X = iris.data
 y = iris.target
 
 # X = X[y != 2][:, [0, 1]]
 # y = y[y != 2]
 
+# # Número de muestras (filas)
+# num_samples = X.shape[0]
+# # Número de características (columnas)
+# num_features = X.shape[1]
+
+# print(f'Tamaño del dataset: {num_samples} muestras y {num_features} características')
 # Dividir el dataset en conjunto de entrenamiento y prueba
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=1)
 
