@@ -6,8 +6,9 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix
 
+#https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_wine.html#sklearn.datasets.load_wine
 # Cargar el dataset Iris
-iris = datasets.load_digits()
+iris = datasets.load_iris
 X = iris.data
 y = iris.target
 

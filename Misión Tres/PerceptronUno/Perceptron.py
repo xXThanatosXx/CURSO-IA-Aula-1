@@ -35,7 +35,7 @@ for _ in range(50):
     ppn.fit(X_train_std, y_train)
     y_train_pred = ppn.predict(X_train_std)
     errors.append((y_train != y_train_pred).sum())
-
+# print(errors)
 # Realizar predicciones
 y_pred = ppn.predict(X_test_std)
 
