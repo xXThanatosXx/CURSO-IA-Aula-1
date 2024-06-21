@@ -1,26 +1,16 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn import datasets
+import sklearn.datasets as dts 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-from sklearn.neural_network import MLPClassifier
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix
 
-#https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_wine.html#sklearn.datasets.load_wine
 # Cargar el dataset Iris
-iris = datasets.load_iris()
+iris = dts.load_breast_cancer()
 X = iris.data
 y = iris.target
 
-# X = X[y != 2][:, [0, 1]]
-# y = y[y != 2]
-
-# # Número de muestras (filas)
-# num_samples = X.shape[0]
-# # Número de características (columnas)
-# num_features = X.shape[1]
-
-# print(f'Tamaño del dataset: {num_samples} muestras y {num_features} características')
 # Dividir el dataset en conjunto de entrenamiento y prueba
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=1)
 
@@ -30,12 +20,12 @@ sc.fit(X_train)
 X_train_std = sc.transform(X_train)
 X_test_std = sc.transform(X_test)
 
-# Entrenar el Perceptrón Multicapa
-mlp = MLPClassifier(hidden_layer_sizes=(10,), max_iter=40, alpha=0.001, learning_rate_init=0.15, random_state=1,solver='adam',activation='relu')
-mlp.fit(X_train_std, y_train)
+# Entrenar el clasificador KNN
+knn = KNeighborsClassifier(n_neighbors=4)
+knn.fit(X_train_std, y_train)
 
 # Realizar predicciones
-y_pred = mlp.predict(X_test_std)
+y_pred = knn.predict(X_test_std)
 
 # Evaluar el rendimiento del modelo
 print(f'Accuracy: {accuracy_score(y_test, y_pred):.2f}')
@@ -49,12 +39,4 @@ sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues', xticklabels=iris.tar
 plt.xlabel('Predicted')
 plt.ylabel('True')
 plt.title('Confusion Matrix')
-plt.show()
-
-# Graficar el error por época de entrenamiento
-plt.figure(figsize=(8, 6))
-plt.plot(range(1, len(mlp.loss_curve_) + 1), mlp.loss_curve_, marker='o')
-plt.xlabel('Epochs')
-plt.ylabel('Loss')
-plt.title('Training Loss per Epoch')
 plt.show()
