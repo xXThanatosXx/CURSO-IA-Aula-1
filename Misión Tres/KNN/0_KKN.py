@@ -7,7 +7,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix
 
 # Cargar el dataset Iris
-iris = dts.load_breast_cancer()
+iris = dts.load_iris()
 X = iris.data
 y = iris.target
 
